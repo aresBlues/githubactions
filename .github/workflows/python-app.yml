@@ -35,3 +35,7 @@ jobs:
       run: |
         export PYTHONPATH=src      
         pytest
+    - name: Deploy Heroku
+      env:
+        HEROKU_API_TOKEN: $ {{ secrets.HERO }}
+        HEROKU_APP_NAME: $ {{ secrets.HERO_APP_NAME }}
