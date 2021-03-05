@@ -36,10 +36,10 @@ jobs:
         export PYTHONPATH=src      
         pytest
     - name: Deploy Heroku
-      env:
-        HERO: $ {{ secrets.HERO }}
-        HERO_APP_NAME: $ {{ secrets.HERO_APP_NAME }}
-      if: github.ref == 'refs/heads/master' && job.status=='success'
-      run: |
-        git remote add heroku https://heroku:$HERO@git.heroku.com/$HERO_APP_NAME.git
-        git push heroku HEAD:master -f
+  env:
+    HERO: $ {{ secrets.HERO }}
+    HERO_APP_NAME: $ {{ secrets.HERO_APP_NAME }}
+  if: github.ref == 'refs/heads/master' && job.status=='success'
+  run: |
+    git remote add heroku https://heroku:$HERO@git.heroku.com/$HERO_APP_NAME.git
+    git push heroku HEAD:master -f
